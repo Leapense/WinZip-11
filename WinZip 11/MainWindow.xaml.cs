@@ -16,13 +16,14 @@ using System.Windows.Navigation;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
+using MicaWPF.Controls;
 
 namespace WinZip_11
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MicaWindow
     {
         public MainWindow()
         {
