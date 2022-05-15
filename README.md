@@ -6,13 +6,7 @@
 ------
 ## How to use?
 ------
-Step 1. If you have git, you need to type like this
-``` 
-git clone https://github.com/Leapense/WinZip-11
-```
-Step 2. Extract. <br>
-Step 3. Go to bin > Debug > net5.0-windows <br>
-Step 4. Launch WinZip 11.exe <br>
+Go to release and download WinZip11-Beta1.zip
 
 -----
 ## What app can do?
