@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Diagnostics;
 using MicaWPF.Controls;
+using MicaWPF.Services;
 
 namespace WinZip_11
 {
@@ -28,6 +29,15 @@ namespace WinZip_11
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += (sender, args) =>
+            {
+                WPFUI.Appearance.Watcher.Watch(
+                  this,                           // Window class
+                  WPFUI.Appearance.BackgroundType.Mica, // Background type
+                  true                            // Whether to change accents automatically
+                );
+
+            };
         }
 
         public static string zip_file_name;
@@ -88,25 +98,33 @@ namespace WinZip_11
             TB1.Header = "     Extract Compressed(Zipped) Folders";
             Head.Content = "Select a Destination and Extract Files";
             Body1.Content = "Select compressed file:";
-            FileN.Placeholder = "Select your Zip File or Enter the full path";
             Body2.Content = "Files will be extracted to this folder:";
-            FolderN.Placeholder = "Select your Destination Path";
             Body2.Visibility = Visibility.Visible;
+            FileN.Visibility = Visibility.Visible;
             FolderN.Visibility = Visibility.Visible;
+            Button1.Visibility = Visibility.Visible;
+            Button2.Visibility = Visibility.Visible;
             Button3.Visibility = Visibility.Hidden;
             Button4.Visibility = Visibility.Hidden;
+            TS1.Visibility = Visibility.Visible;
+            this.Height = 523;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             // TODO Make Archive Function
             TB1.Header = "     Archive Files";
-            Head.Content = "Select Files and Archive Folder Name";
-            Body1.Content = "Please Choose one or multiple files.";
+            Head.Content = "Welcome to Archive!";
+            Body1.Visibility = Visibility.Hidden;
             Button3.Visibility = Visibility.Visible;
             Button4.Visibility = Visibility.Visible;
+            Button1.Visibility = Visibility.Hidden;
+            Button2.Visibility = Visibility.Hidden;
             Body2.Visibility = Visibility.Hidden;
-            FolderN.Placeholder = "Enter the folder path";
+            FileN.Visibility = Visibility.Hidden;
+            FolderN.Visibility = Visibility.Hidden;
+            TS1.Visibility = Visibility.Hidden;
+            this.Height = this.Height - 200;
         }
         
         private void Button3_Click(object sender, RoutedEventArgs e)
@@ -153,6 +171,20 @@ namespace WinZip_11
                     Process.Start(startInfo);
                 }
             }
+        }
+
+        private void ThemeChanger_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var themeService = ThemeService.GetCurrent();
+            var tag_num = ThemeChanger.SelectedIndex;
+            if (tag_num == 1)
+                themeService.EnableMica(this, MicaWPF.BackdropType.Acrylic);
+            else if (tag_num == 2)
+                themeService.EnableMica(this, MicaWPF.BackdropType.Mica);
+            else if (tag_num == 3)
+                themeService.EnableMica(this, MicaWPF.BackdropType.Tabbed);
+            else if (tag_num == 4)
+                themeService.EnableMica(this, MicaWPF.BackdropType.None);
         }
     }
 }

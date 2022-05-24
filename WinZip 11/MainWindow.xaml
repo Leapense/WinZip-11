@@ -7,38 +7,48 @@
         mc:Ignorable="d"
         xmlns:mica="clr-namespace:MicaWPF.Controls;assembly=MicaWPF"
         xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
-        Style="{StaticResource UiWindow}"
-        Title="MainWindow" Height="492" Width="800">
+        Title=" " Height="523" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="70"/>
+            <RowDefinition Height="324" />
+            <RowDefinition Height="Auto" MinHeight="34"/>
         </Grid.RowDefinitions>
         <wpfui:FontIcon Width="60" Height="30" Glyph="&#xF012;" Foreground="Orange" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
-        <wpfui:TitleBar x:Name="TB1" Margin="60,0,-48,0" CanMaximize="False" Header="     Extract Compressed(Zipped) Folders" FontSize="19" VerticalContentAlignment="Center" FontFamily="Segoe UI Variable" FontWeight="DemiBold" VerticalAlignment="Center" Height="30" ShowMaximize="False" ShowMinimize="False"/>
+        <wpfui:TitleBar x:Name="TB1" Margin="60,0,-126,0" Header="     Extract Compressed(Zipped) Folders" FontSize="19" FontFamily="Segoe UI Variable" FontWeight="DemiBold" VerticalAlignment="Center" Height="30"/>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal" Height="30" Background="#502B2B2B" >
-                <wpfui:Button Margin="4" Content="Extract" Foreground="White" Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="26" Width="78" Click="Button_Click_2" Appearance="Dark"/>
-                <wpfui:Button Margin="4" Content="Archive"  Foreground="White" Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="26" Width="78" Click="Button_Click_3" Appearance="Dark"/>
+            <StackPanel Orientation="Horizontal" Height="67" >
+                <wpfui:Button FontSize="12" Padding="0" Appearance="Transparent" Height="32" Width="32" Margin="10,0,0,0">
+                    <wpfui:SymbolIcon Symbol="Settings48" Filled="True"/>
+                </wpfui:Button>
+                <ComboBox x:Name="ThemeChanger" Width="156" Height="36" FontSize="11" Padding="0"  SelectionChanged="ThemeChanger_SelectionChanged">
+                    <ComboBoxItem Content="Themes" IsSelected="True"/>
+                    <ComboBoxItem Content="Acrylic" />
+                    <ComboBoxItem Content="Mica" />
+                    <ComboBoxItem Content="Tabbed" />
+                    <ComboBoxItem Content="Solid" />
+                </ComboBox>
+                <wpfui:Button Margin="4" Content="Extract" Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="36" Width="83" Click="Button_Click_2" BorderBrush="Transparent"/>
+                <wpfui:Button Margin="4" Content="Archive"  Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="36" Width="89" Click="Button_Click_3" BorderBrush="Transparent"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
-            <Label x:Name="Head" Content="Select a Destination and Extract Files" Foreground="#FF007FDE" Padding="10" FontFamily="Segoe UI Variable Display" FontWeight="Medium" FontSize="18" Margin="0,0,0,326"/>
-            <Label x:Name="Body2" Content="Files will be extracted to this folder:" Height="20" Foreground="Gray" Padding="19,0,0,0" Margin="1,118,-1,236" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <wpfui:TextBox x:Name="FolderN" Height="12" Margin="0,138,306,202" Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" TextChanged="FolderN_TextChanged"/>
-            <wpfui:Button x:Name="Button2" Content="Browse..." Margin="0,142,210,0" Appearance="Dark" Foreground="White" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click_1"/>
-            <CheckBox x:Name="TS1" Margin="20, 0, 0, 0"  Height="23" Foreground="Gray" Content="Show extracted files when complete" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <Label x:Name="Body1" Content="Select compressed file:" Height="20" Foreground="Gray" Padding="19,0,0,0" Margin="1,43,-1,311" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <wpfui:TextBox x:Name="FileN" Height="12" Margin="0,63,306,277" Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472"/>
-            <wpfui:Button x:Name="Button1" Content="Browse..." Margin="0,67,210,0" Appearance="Dark" Foreground="White" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click"/>
-            <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20" Foreground="Gray" Padding="19,0,0,0" Margin="0,203,0,151" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <wpfui:Button x:Name="Button3" Visibility="Hidden" Content="Choose..." Margin="0,-27,5,0" Appearance="Dark" Foreground="White" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button3_Click"/>
-            <wpfui:Button x:Name="Button4" Visibility="Hidden" Content="Save Zip File" Margin="0,-27,117,0" Appearance="Dark" Foreground="White" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="74" Click="Button4_Click"/>
+            <Label x:Name="Head" Content="Select a Destination and Extract Files" Foreground="#FF6CB2E6" Padding="10" FontFamily="Segoe UI Variable Display" FontWeight="Medium" FontSize="18"/>
+            <Label x:Name="Body2" Content="Files will be extracted to this folder:" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,106,-4,198"/>
+            <wpfui:TextBox x:Name="FolderN" Height="12" Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" TextChanged="FolderN_TextChanged" Margin="0,136,317,154"/>
+            <wpfui:Button x:Name="Button2" Content="Browse..." Margin="0,139,210,0" Padding="0" FontSize="13" Appearance="Transparent" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click_1"/>
+            <CheckBox x:Name="TS1" Margin="20,180,0,121"  Height="23" Foreground="#FFADADAD" Content="Show extracted files when complete" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
+            <Label x:Name="Body1" Content="Select compressed file:" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,47,-4,257"/>
+            <wpfui:TextBox x:Name="FileN" Height="12"  Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" Margin="0,67,318,223"/>
+            <wpfui:Button x:Name="Button1" Appearance="Transparent" Content="Browse..." Margin="0,70,210,0" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click"/>
+            <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0" Margin="0,203,0,151" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
+            <wpfui:Button Appearance="Transparent" x:Name="Button3" Visibility="Hidden" Content="Choose..."  Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button3_Click" Margin="0,43,699,0" />
+            <wpfui:Button x:Name="Button4" Visibility="Hidden" Content="Save Zip File" Appearance="Transparent" Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button4_Click" Margin="0,72,699,0"/>
         </Grid>
         <Grid Grid.Row="3">
-            <wpfui:Button Content="Start!" Margin="710,4,10,0" Appearance="Dark" Foreground="White" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="30" VerticalAlignment="Top" Click="Button_Click_4"/>
+            <wpfui:Button Content="Start!" Margin="710,4,10,0"  Padding="0" FontSize="13" Appearance="Transparent" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="30" VerticalAlignment="Top" Click="Button_Click_4"/>
         </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,49,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Ver. 1.0.1" VerticalAlignment="Top" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
     </Grid>
 </mica:MicaWindow>
