@@ -99,15 +99,16 @@ namespace WinZip_11
             Head.Content = "Select a Destination and Extract Files";
             Body1.Content = "Select compressed file:";
             Body2.Content = "Files will be extracted to this folder:";
-            Body2.Visibility = Visibility.Visible;
-            FileN.Visibility = Visibility.Visible;
-            FolderN.Visibility = Visibility.Visible;
-            Button1.Visibility = Visibility.Visible;
-            Button2.Visibility = Visibility.Visible;
-            Button3.Visibility = Visibility.Hidden;
-            Button4.Visibility = Visibility.Hidden;
-            TS1.Visibility = Visibility.Visible;
-            this.Height = 523;
+            //Body1.Visibility = Visibility.Visible;
+            //Body2.Visibility = Visibility.Visible;
+            //FileN.Visibility = Visibility.Visible;
+            //FolderN.Visibility = Visibility.Visible;
+            //Button1.Visibility = Visibility.Visible;
+            //Button2.Visibility = Visibility.Visible;
+            //Button3.Visibility = Visibility.Hidden;
+            //Button4.Visibility = Visibility.Hidden;
+            //TS1.Visibility = Visibility.Visible;
+            //this.Height = 523;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -115,16 +116,16 @@ namespace WinZip_11
             // TODO Make Archive Function
             TB1.Header = "     Archive Files";
             Head.Content = "Welcome to Archive!";
-            Body1.Visibility = Visibility.Hidden;
-            Button3.Visibility = Visibility.Visible;
-            Button4.Visibility = Visibility.Visible;
-            Button1.Visibility = Visibility.Hidden;
-            Button2.Visibility = Visibility.Hidden;
-            Body2.Visibility = Visibility.Hidden;
-            FileN.Visibility = Visibility.Hidden;
-            FolderN.Visibility = Visibility.Hidden;
-            TS1.Visibility = Visibility.Hidden;
-            this.Height = this.Height - 200;
+            //Body1.Visibility = Visibility.Hidden;
+            //Button3.Visibility = Visibility.Visible;
+            //Button4.Visibility = Visibility.Visible;
+            //Button1.Visibility = Visibility.Hidden;
+            //Button2.Visibility = Visibility.Hidden;
+            //Body2.Visibility = Visibility.Hidden;
+            //FileN.Visibility = Visibility.Hidden;
+            //FolderN.Visibility = Visibility.Hidden;
+            //TS1.Visibility = Visibility.Hidden;
+            //this.Height = this.Height - 200;
         }
         
         private void Button3_Click(object sender, RoutedEventArgs e)

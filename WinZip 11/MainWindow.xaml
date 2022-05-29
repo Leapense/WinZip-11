@@ -1,4 +1,4 @@
-﻿<mica:MicaWindow x:Class="WinZip_11.MainWindow"
+﻿<mica:MicaWindow x:Name="myWindow" x:Class="WinZip_11.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         xmlns:mica="clr-namespace:MicaWPF.Controls;assembly=MicaWPF"
         xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
-        Title=" " Height="523" Width="800">
+        Title=" " Height="523" Width="800" Style="{DynamicResource UiWindowRounded}">
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" MinHeight="70"/>
+            <RowDefinition Height="Auto" MinHeight="36"/>
+            <RowDefinition Height="Auto" MinHeight="67"/>
             <RowDefinition Height="324" />
             <RowDefinition Height="Auto" MinHeight="34"/>
         </Grid.RowDefinitions>
-        <wpfui:FontIcon Width="60" Height="30" Glyph="&#xF012;" Foreground="Orange" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
-        <wpfui:TitleBar x:Name="TB1" Margin="60,0,-126,0" Header="     Extract Compressed(Zipped) Folders" FontSize="19" FontFamily="Segoe UI Variable" FontWeight="DemiBold" VerticalAlignment="Center" Height="30"/>
+        <wpfui:FontIcon Width="60" Height="36" Glyph="&#xF012;" Foreground="Orange" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left"  />
+        <wpfui:TitleBar x:Name="TB1" Margin="60,0,0,0" Header="     Extract Compressed(Zipped) Folders" FontSize="19" FontFamily="Segoe UI Variable" FontWeight="DemiBold" Height="36" VerticalAlignment="Center" />
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" Height="67" >
                 <wpfui:Button FontSize="12" Padding="0" Appearance="Transparent" Height="32" Width="32" Margin="10,0,0,0">
@@ -29,26 +30,128 @@
                     <ComboBoxItem Content="Tabbed" />
                     <ComboBoxItem Content="Solid" />
                 </ComboBox>
-                <wpfui:Button Margin="4" Content="Extract" Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="36" Width="83" Click="Button_Click_2" BorderBrush="Transparent"/>
-                <wpfui:Button Margin="4" Content="Archive"  Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="36" Width="89" Click="Button_Click_3" BorderBrush="Transparent"/>
+                <wpfui:Button Margin="4" Content="Extract" Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Click="Button_Click_2" Height="36" Width="83" BorderBrush="Transparent" >
+                    <wpfui:Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="False">
+                                        <DoubleAnimation Storyboard.TargetName="myWindow"
+                                                         Storyboard.TargetProperty="(Window.Height)"
+                                                         DecelerationRatio="1"
+                                                         To="523" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Body1"
+                                                         Storyboard.TargetProperty="(Label.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Body2"
+                                                         Storyboard.TargetProperty="(Label.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="FileN"
+                                                         Storyboard.TargetProperty="(TextBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="FolderN"
+                                                         Storyboard.TargetProperty="(TextBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button1"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button2"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button3"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button4"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="TS1"
+                                                         Storyboard.TargetProperty="(CheckBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </wpfui:Button.Triggers>
+                </wpfui:Button>
+                <wpfui:Button Margin="4" Content="Archive"  Appearance="Transparent" Padding="0" FontSize="15" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="36" Width="89" Click="Button_Click_3" BorderBrush="Transparent">
+                    <wpfui:Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard AutoReverse="False">
+                                        <DoubleAnimation Storyboard.TargetName="myWindow"
+                                                         Storyboard.TargetProperty="(Window.Height)"
+                                                         DecelerationRatio="1"
+                                                         To="323" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Body1"
+                                                         Storyboard.TargetProperty="(Label.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Body2"
+                                                         Storyboard.TargetProperty="(Label.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="FileN"
+                                                         Storyboard.TargetProperty="(TextBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="FolderN"
+                                                         Storyboard.TargetProperty="(TextBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button1"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button2"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button3"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="Button4"
+                                                         Storyboard.TargetProperty="(Button.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="1" Duration="0:0:0.5"/>
+                                        <DoubleAnimation Storyboard.TargetName="TS1"
+                                                         Storyboard.TargetProperty="(CheckBox.Opacity)"
+                                                         DecelerationRatio="1"
+                                                         To="0" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </wpfui:Button.Triggers>
+                </wpfui:Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2">
             <Label x:Name="Head" Content="Select a Destination and Extract Files" Foreground="#FF6CB2E6" Padding="10" FontFamily="Segoe UI Variable Display" FontWeight="Medium" FontSize="18"/>
-            <Label x:Name="Body2" Content="Files will be extracted to this folder:" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,106,-4,198"/>
-            <wpfui:TextBox x:Name="FolderN" Height="12" Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" TextChanged="FolderN_TextChanged" Margin="0,136,317,154"/>
+            <Label x:Name="Body2" Content="Files will be extracted to this folder:" Height="20" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Padding="19,0,0,0"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,106,-4,198"/>
+            <wpfui:TextBox x:Name="FolderN" Height="12" Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" TextChanged="FolderN_TextChanged" Margin="0,136,317,154" Cursor="Hand"/>
             <wpfui:Button x:Name="Button2" Content="Browse..." Margin="0,139,210,0" Padding="0" FontSize="13" Appearance="Transparent" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click_1"/>
-            <CheckBox x:Name="TS1" Margin="20,180,0,121"  Height="23" Foreground="#FFADADAD" Content="Show extracted files when complete" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <Label x:Name="Body1" Content="Select compressed file:" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,47,-4,257"/>
+            <CheckBox x:Name="TS1" Margin="20,180,0,121"  Height="23" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Content="Show extracted files when complete" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Cursor="Hand"/>
+            <Label x:Name="Body1" Content="Select compressed file:" Height="20" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Padding="19,0,0,0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="4,47,-4,257"/>
             <wpfui:TextBox x:Name="FileN" Height="12"  Placeholder="Select your Zip File or Enter the full path" PlaceholderVisible="True" HorizontalAlignment="Right" Width="472" Margin="0,67,318,223"/>
             <wpfui:Button x:Name="Button1" Appearance="Transparent" Content="Browse..." Margin="0,70,210,0" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="91" Click="Button_Click"/>
-            <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20" Foreground="#FFADADAD" Padding="19,0,0,0" Margin="0,203,0,151" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium"/>
-            <wpfui:Button Appearance="Transparent" x:Name="Button3" Visibility="Hidden" Content="Choose..."  Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button3_Click" Margin="0,43,699,0" />
-            <wpfui:Button x:Name="Button4" Visibility="Hidden" Content="Save Zip File" Appearance="Transparent" Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button4_Click" Margin="0,72,699,0"/>
+            <wpfui:Button Appearance="Transparent" x:Name="Button3" Opacity="0" Content="Choose..."  Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button3_Click" Margin="0,43,699,0" />
+            <wpfui:Button x:Name="Button4" Opacity="0" Content="Save Zip File" Appearance="Transparent" Padding="0" FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81" Click="Button4_Click" Margin="0,72,699,0"/>
         </Grid>
         <Grid Grid.Row="3">
-            <wpfui:Button Content="Start!" Margin="710,4,10,0"  Padding="0" FontSize="13" Appearance="Transparent" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="30" VerticalAlignment="Top" Click="Button_Click_4"/>
+            <wpfui:Button Content="Start!" Margin="710,4,0,0"  Padding="0" FontSize="13" Appearance="Transparent" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="30" VerticalAlignment="Top" Click="Button_Click_4" HorizontalAlignment="Center" Width="80"/>
+            <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="10,0,140,45"/>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,49,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Ver. 1.0.1" VerticalAlignment="Top" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Ver. 1.0.1" VerticalAlignment="Top" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" Height="16" Width="83"/>
     </Grid>
 </mica:MicaWindow>
