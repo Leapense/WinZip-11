@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MicaWPF" Version="3.1.15" />
+    <PackageReference Include="MicaWPF" Version="3.1.27" />
     <PackageReference Include="WPF-UI" Version="1.2.7" />
   </ItemGroup>
 

@@ -102,8 +102,7 @@ namespace WinZip_11
                 destination_path = Path.GetFullPath(destination_path);
             }
         }
-
-        
+        static bool is_extract = true;
         static int count = 0;
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -118,62 +117,23 @@ namespace WinZip_11
             Button4.Visibility = Visibility.Hidden;
             //TS1.Visibility = Visibility.Visible;
             //this.Height = 523;
+            count += 1;
+            is_extract = true;
             if(Language.SelectedIndex == 1)
             {
-                TB1.Header = "    압축 해제 프로그램";
-                Head.Content = "압축 풀 경로와 압축 풀 파일을 선택하세요.";
-                Body1.Content = "압축 파일 선택하세요: ";
-                Body2.Content = "압축 풀 경로를 선택해주세요: ";
-                FL.Content = "Zip 파일을 선택하세요.";
-            }
-            else
-            {
-                TB1.Header = "     Extract Compressed(Zipped) Folders";
+                TB1.Content = "     Extract Compressed(Zipped) Folders";
                 Head.Content = "Select a Destination and Extract Files";
                 Body1.Content = "Select compressed file:";
                 Body2.Content = "Files will be extracted to this folder:";
                 FL.Content = "Please Select The Zip File.";
             }
-            count += 1;
-            if(WinFunFact.Content.Equals("Thanks!"))
+            else if(Language.SelectedIndex == 2)
             {
-                WinFunFact.Content = "Not again. Why are you doing this?";
-                if(Language.SelectedIndex == 1)
-                {
-                    WinFunFact.Content = "맙소사. 또인가요? 도대체 왜 이러세요?";
-                }
-            }
-            if (count >= 69)
-            {
-                WinFunFact.Content = "did you just feel like boring to you?";
-                if (Language.SelectedIndex == 1)
-                {
-                    WinFunFact.Content = "혹시 지루하시는 건가요?";
-                }
-                if (count >= 75)
-                {
-                    WinFunFact.Content = "I mean... you know I like find some easter egg.";
-                    if (Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "저는 그니까... 저도 이스터에그를 찾는 거 좋아해요.";
-                    }
-                }
-                if (count >= 80)
-                {
-                    WinFunFact.Content = "Is your work name... Switcher?";
-                    if (Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "당신의 직업이 스위처인가요?";
-                    }
-                }
-                if (count >= 90)
-                {
-                    WinFunFact.Content = "Stop Switch! You harming your window!";
-                    if (Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "그만 전환하세요. 당신이 윈도우를 해치고 있어요!";
-                    }
-                }
+                TB1.Content = "    압축 해제 프로그램";
+                Head.Content = "압축 풀 경로와 압축 풀 파일을 선택하세요.";
+                Body1.Content = "압축 파일 선택하세요: ";
+                Body2.Content = "압축 풀 경로를 선택해주세요: ";
+                FL.Content = "Zip 파일을 선택하세요.";
             }
         }
 
@@ -190,60 +150,35 @@ namespace WinZip_11
             //FolderN.Visibility = Visibility.Hidden;
             //TS1.Visibility = Visibility.Hidden;
             //this.Height = this.Height - 200;
+            count += 1;
+            is_extract = false;
             if(Language.SelectedIndex == 1)
             {
-                TB1.Header = "   파일 압축하기";
-                Head.Content = "파일 압축하는 시스템에 오신걸 환영합니다.";
-                FL.Content = "파일이나 폴더를 선택하시고 압축할 준비를 해주세요.";
-            }
-            else
-            {
-                TB1.Header = "     Archive Files";
+                TB1.Content = "     Archive Files";
                 Head.Content = "Welcome to Archive!";
                 FL.Content = "Please Select File/Folder What you want to archive";
             }
-            count += 1;
-            if (count >= 69)
+            else if(Language.SelectedIndex == 2)
             {
-                WinFunFact.Content = "did you just feel like boring to you?";
-                if(Language.SelectedIndex == 1)
-                {
-                    WinFunFact.Content = "혹시 지루하시는 건가요?";
-                }
-                if (count >= 75)
-                {
-                    WinFunFact.Content = "I mean... you know I like find some easter egg.";
-                    if(Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "저는 그니까... 저도 이스터에그를 찾는 거 좋아해요.";
-                    }
-                }
-                if (count >= 80)
-                {
-                    WinFunFact.Content = "Is your work name... Switcher?";
-                    if(Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "당신의 직업이 스위처인가요?";
-                    }
-                }
-                if (count >= 90)
-                {
-                    WinFunFact.Content = "Stop Switch! You harming your window!";
-                    if(Language.SelectedIndex == 1)
-                    {
-                        WinFunFact.Content = "그만 전환하세요. 당신이 윈도우를 해치고 있어요!";
-                    }
-                }
+                TB1.Content = "   파일 압축하기";
+                Head.Content = "파일 압축하는 시스템에 오신걸 환영합니다.";
+                FL.Content = "파일이나 폴더를 선택하시고 압축할 준비를 해주세요.";
             }
+            
         }
         
         private void Button3_Click(object sender, RoutedEventArgs e)
         {
+            MultiFileList.Items.Clear();
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Multiselect = true;
             if(ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 selected_files = ofd.FileNames;
+                foreach (string file in ofd.FileNames)
+                {
+                    MultiFileList.Items.Add(Path.GetFileName(file));
+                }
             }
             FL.Content = "These List will be archive.";
         }
@@ -261,6 +196,7 @@ namespace WinZip_11
                     foreach(string file in selected_files)
                     {
                         archive.CreateEntryFromFile(file, Path.GetFileName(file));
+                        
                     }
                 }
             }
@@ -270,13 +206,19 @@ namespace WinZip_11
         {
            
             for (int i = 0; i < MultiFileList.Items.Count; i++)
-            {
+            {      
+                
                 ZipFile.ExtractToDirectory(Path.GetFullPath(zfn[i]), destination_path);
+                
             }
             if (count >= 69)
             {
                 count = 0;
                 WinFunFact.Content = "Thanks!";
+                if(Language.SelectedIndex == 1)
+                {
+                    WinFunFact.Content = "감사합니다.";
+                }
             }
             else
             {
@@ -313,7 +255,7 @@ namespace WinZip_11
 
         private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Language.SelectedIndex == 0)
+            if(Language.SelectedIndex == 1)
             {
                 string win_fun = WinFunFact.Content.ToString();
                 if (win_fun.Equals(win_fun_fact_list_korean[0]))
@@ -328,8 +270,39 @@ namespace WinZip_11
                 {
                     WinFunFact.Content = win_fun_fact_list[2];
                 }
+
+                if (is_extract)
+                {
+                    TB1.Content = "     Extract Compressed(Zipped) Folders";
+                    Head.Content = "Select a Destination and Extract Files";
+                    Body1.Content = "Select compressed file:";
+                    Body2.Content = "Files will be extracted to this folder:";
+                    FL.Content = "Please Select The Zip File.";
+                }
+
+                if (count >= 69)
+                {
+                    WinFunFact.Content = "did you just feel like boring to you?";
+                    if (count >= 75)
+                    {
+                        WinFunFact.Content = "I mean... you know I like find some easter egg.";
+                    }
+                    if (count >= 80)
+                    {
+                        WinFunFact.Content = "Is your work name... Switcher?";
+                    }
+                    if (count >= 90)
+                    {
+                        WinFunFact.Content = "Stop Switch! You harming your window!";
+                    }
+                }
+                if (WinFunFact.Content.Equals("Thanks!"))
+                {
+                    WinFunFact.Content = "Not again, Why are you doing this?";
+                }
+                
             }
-            else if(Language.SelectedIndex == 1)
+            else if(Language.SelectedIndex == 2)
             {
                 string win_fun = WinFunFact.Content.ToString();
                 if (win_fun.Equals(win_fun_fact_list[0]))
@@ -344,6 +317,38 @@ namespace WinZip_11
                 {
                     WinFunFact.Content = win_fun_fact_list_korean[2];
                 }
+                
+                if(is_extract)
+                {
+                    TB1.Content = "    압축 해제 프로그램";
+                    Head.Content = "압축 풀 경로와 압축 풀 파일을 선택하세요.";
+                    Body1.Content = "압축 파일 선택하세요: ";
+                    Body2.Content = "압축 풀 경로를 선택해주세요: ";
+                    FL.Content = "Zip 파일을 선택하세요.";
+                }
+
+                if (count >= 69)
+                {
+                    WinFunFact.Content = "혹시 지루하시는 건가요?";
+                    if (count >= 75)
+                    {
+                        WinFunFact.Content = "저는 그니까... 저도 이스터에그를 찾는 거 좋아해요.";
+                    }
+                    if (count >= 80)
+                    {
+                        WinFunFact.Content = "당신의 직업이 스위처인가요?";
+                    }
+                    if (count >= 90)
+                    {
+                        WinFunFact.Content = "그만 전환하세요. 당신이 윈도우를 해치고 있어요!";
+                    }
+                }
+                if (WinFunFact.Content.Equals("감사합니다."))
+                {
+                    WinFunFact.Content = "또 그러시네. 도대체 왜 이러세요?";
+                }
+
+                            
             }
         }
     }
