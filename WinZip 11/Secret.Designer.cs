@@ -113,7 +113,6 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Secret";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Secret";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

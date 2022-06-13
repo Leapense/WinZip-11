@@ -1,22 +1,15 @@
-﻿using System;
+﻿using MicaWPF.Controls;
+using MicaWPF.Services;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Forms;
-using System.Diagnostics;
-using MicaWPF.Controls;
-using MicaWPF.Services;
+using System.Windows.Input;
 
 namespace WinZip_11
 {
@@ -30,6 +23,7 @@ namespace WinZip_11
             InitializeComponent();
             Loaded += (sender, args) =>
             {
+                
                 WPFUI.Appearance.Watcher.Watch(
                   this,                           // Window class
                   WPFUI.Appearance.BackgroundType.Mica, // Background type
@@ -61,6 +55,22 @@ namespace WinZip_11
             "혹시 새로운 아웃룩 디자인 보셨나요? 한 번 확인해보세요!"
         };
 
+        
+
+        public static string[] fun_with_progress_ring =
+        {
+            "Need some help?",
+            "Why you click me for no reason?",
+            "If you want to start to extract/archive try click somewhere not me.",
+            "Have you try some new feature about Windows 11?",
+            "...",
+            "Feels bored?, You can touch some grass :)",
+            "Stop abusing me, I'm not a mouse!",
+            "Why are you doing this?",
+            "Stop it!",
+            "you are so rude on me!"
+        };
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             /// <summary>
@@ -72,8 +82,8 @@ namespace WinZip_11
             ofd.Filter = "Zip Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|All Files (*.*)|*.*";
             ofd.Title = "Select your zipped file.";
             ofd.Multiselect = true;
-            
-            if(ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 foreach (string file in ofd.FileNames)
                 {
@@ -82,9 +92,11 @@ namespace WinZip_11
                 }
             }
             FL.Content = "These File will be extract.";
+            RingChan.Visibility = Visibility.Hidden;
+            FunWithMe.Visibility = Visibility.Hidden;
             // set file_exists_path to 
             file_exists_path = Path.GetFullPath(ofd.FileName.Replace(".zip", ""));
-            
+
             // if folder path is already exists.
             if (Directory.Exists((file_exists_path)))
             {
@@ -96,7 +108,7 @@ namespace WinZip_11
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if(fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 destination_path = fbd.SelectedPath;
                 destination_path = Path.GetFullPath(destination_path);
@@ -115,11 +127,16 @@ namespace WinZip_11
             Button2.Visibility = Visibility.Visible;
             Button3.Visibility = Visibility.Hidden;
             Button4.Visibility = Visibility.Hidden;
+            if(MultiFileList.Items.Count == 0)
+            {
+                RingChan.Visibility = Visibility.Visible;
+                FunWithMe.Visibility = Visibility.Visible;
+            }
             //TS1.Visibility = Visibility.Visible;
             //this.Height = 523;
             count += 1;
             is_extract = true;
-            if(Language.SelectedIndex == 1)
+            if (Language.SelectedIndex == 1)
             {
                 TB1.Content = "     Extract Compressed(Zipped) Folders";
                 Head.Content = "Select a Destination and Extract Files";
@@ -127,7 +144,7 @@ namespace WinZip_11
                 Body2.Content = "Files will be extracted to this folder:";
                 FL.Content = "Please Select The Zip File.";
             }
-            else if(Language.SelectedIndex == 2)
+            else if (Language.SelectedIndex == 2)
             {
                 TB1.Content = "    압축 해제 프로그램";
                 Head.Content = "압축 풀 경로와 압축 풀 파일을 선택하세요.";
@@ -152,27 +169,27 @@ namespace WinZip_11
             //this.Height = this.Height - 200;
             count += 1;
             is_extract = false;
-            if(Language.SelectedIndex == 1)
+            if (Language.SelectedIndex == 1)
             {
                 TB1.Content = "     Archive Files";
                 Head.Content = "Welcome to Archive!";
                 FL.Content = "Please Select File/Folder What you want to archive";
             }
-            else if(Language.SelectedIndex == 2)
+            else if (Language.SelectedIndex == 2)
             {
                 TB1.Content = "   파일 압축하기";
                 Head.Content = "파일 압축하는 시스템에 오신걸 환영합니다.";
                 FL.Content = "파일이나 폴더를 선택하시고 압축할 준비를 해주세요.";
             }
-            
+
         }
-        
+
         private void Button3_Click(object sender, RoutedEventArgs e)
         {
             MultiFileList.Items.Clear();
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Multiselect = true;
-            if(ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 selected_files = ofd.FileNames;
                 foreach (string file in ofd.FileNames)
@@ -181,6 +198,8 @@ namespace WinZip_11
                 }
             }
             FL.Content = "These List will be archive.";
+            RingChan.Visibility = Visibility.Hidden;
+            FunWithMe.Visibility = Visibility.Hidden;
         }
 
         private void Button4_Click(object sender, RoutedEventArgs e)
@@ -188,34 +207,34 @@ namespace WinZip_11
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Save Zip File";
             sfd.Filter = "Zip Files (*.zip)|*.zip|7z Files (*.7z)|*.7z|All Files (*.*)|*.*";
-            if(sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string archive_path = Path.GetFullPath(sfd.FileName);
-                using(ZipArchive archive = ZipFile.Open(archive_path, ZipArchiveMode.Update))
+                using (ZipArchive archive = ZipFile.Open(archive_path, ZipArchiveMode.Update))
                 {
-                    foreach(string file in selected_files)
+                    foreach (string file in selected_files)
                     {
                         archive.CreateEntryFromFile(file, Path.GetFileName(file));
-                        
+
                     }
                 }
             }
-            
+
         }
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-           
+
             for (int i = 0; i < MultiFileList.Items.Count; i++)
-            {      
-                
+            {
+
                 ZipFile.ExtractToDirectory(Path.GetFullPath(zfn[i]), destination_path);
-                
+
             }
             if (count >= 69)
             {
                 count = 0;
                 WinFunFact.Content = "Thanks!";
-                if(Language.SelectedIndex == 1)
+                if (Language.SelectedIndex == 1)
                 {
                     WinFunFact.Content = "감사합니다.";
                 }
@@ -227,7 +246,7 @@ namespace WinZip_11
 
             if (TS1.IsChecked == true)
             {
-                if(Directory.Exists(destination_path))
+                if (Directory.Exists(destination_path))
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
@@ -255,7 +274,7 @@ namespace WinZip_11
 
         private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Language.SelectedIndex == 1)
+            if (Language.SelectedIndex == 1)
             {
                 string win_fun = WinFunFact.Content.ToString();
                 if (win_fun.Equals(win_fun_fact_list_korean[0]))
@@ -300,9 +319,9 @@ namespace WinZip_11
                 {
                     WinFunFact.Content = "Not again, Why are you doing this?";
                 }
-                
+
             }
-            else if(Language.SelectedIndex == 2)
+            else if (Language.SelectedIndex == 2)
             {
                 string win_fun = WinFunFact.Content.ToString();
                 if (win_fun.Equals(win_fun_fact_list[0]))
@@ -317,8 +336,8 @@ namespace WinZip_11
                 {
                     WinFunFact.Content = win_fun_fact_list_korean[2];
                 }
-                
-                if(is_extract)
+
+                if (is_extract)
                 {
                     TB1.Content = "    압축 해제 프로그램";
                     Head.Content = "압축 풀 경로와 압축 풀 파일을 선택하세요.";
@@ -348,8 +367,58 @@ namespace WinZip_11
                     WinFunFact.Content = "또 그러시네. 도대체 왜 이러세요?";
                 }
 
-                            
+
             }
+        }
+
+        private void ProgressRing_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var secret = new Secret();
+            Random r = new Random();
+            int r_i = r.Next(0, 8);
+            if (r_i >= 7)
+            {
+                secret.ShowDialog();
+                secret = null;
+            }
+            else
+            {
+                FunWithMe.Content = fun_with_progress_ring[r_i];
+                secret = null;
+            }
+            
+        }
+
+        private void ProgressRing_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var secret = new Secret();
+            Random r = new Random();
+            int r_i = r.Next(0, 12);
+            if (r_i >= 11)
+            {
+                secret.Show();
+                secret = null;
+                FunWithMe.Content = "I told you, It may crash your computer!";
+            }
+            else
+            {
+                
+                try
+                {
+                    FunWithMe.Content = fun_with_progress_ring[r_i];
+                }
+                catch(IndexOutOfRangeException)
+                {
+                    FunWithMe.Content = fun_with_progress_ring[0];
+                }
+                secret = null;
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Window1 win1 = new Window1();
+            win1.Show();
         }
     }
 }

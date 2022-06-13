@@ -148,22 +148,22 @@
         </Grid>
 
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
-            <wpfui:Button Icon="ArrowCircleRight48" Content="Start!"  Padding="0" FontSize="24" Appearance="Secondary" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="40" Click="Button_Click_4" HorizontalAlignment="Left" Width="139" Margin="851,30,0,0" VerticalAlignment="Top"/>
+            <wpfui:Button Icon="ArrowCircleRight48" Content="Start!"  Padding="0" FontSize="24" Appearance="Secondary" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="40" Click="Button_Click_4" HorizontalAlignment="Left" Width="139" Margin="851,17,0,0" VerticalAlignment="Top"/>
             <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="25,10,636,50"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Ver. 1.1.1" VerticalAlignment="Top" Height="16" Width="83"/>
         <Grid Grid.Column="1" Grid.RowSpan="4" Background="#33333333" Panel.ZIndex="-4">
             <Label x:Name="FL" Content="Please Select The Zip File." HorizontalAlignment="Left" Margin="15,40,0,0" FontSize="14" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold"/>
-            <TextBox HorizontalAlignment="Left" Margin="36,463,0,0" TextWrapping="Wrap" Text="We're Listening to you." VerticalAlignment="Top" Width="265" FontFamily="Segoe UI Variable Display Semibold"/>
-            <wpfui:Button Icon="PersonVoice24" Appearance="Secondary" Height="32" FontSize="24" Padding="0" Margin="320,465,154,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="15,447,0,0" TextWrapping="Wrap" Text="We're Listening to you." VerticalAlignment="Top" Width="265" FontFamily="Segoe UI Variable Display Semibold"/>
+            <wpfui:Button Icon="PersonVoice24" Appearance="Secondary" Height="32" FontSize="24" Padding="0" Margin="299,447,175,0" VerticalAlignment="Top"/>
         </Grid>
-        <wpfui:ProgressRing Grid.Column="1" Progress="360" Foreground="WhiteSmoke" Grid.Row="2" Panel.ZIndex="5" EngAngle="360" IsIndeterminate="True" Margin="231,102,232,162"/>
-        <Label Panel.ZIndex="5" Content="Looks like So empty. We're still waiting..." Grid.Column="1" Margin="20,167,26,113" Grid.Row="2" FontFamily="Segoe UI Variable Display Semibold" HorizontalContentAlignment="Center" FontSize="19"/>
+        <wpfui:ProgressRing x:Name="RingChan" Grid.Column="1" Progress="360" Foreground="WhiteSmoke" Grid.Row="2" Panel.ZIndex="5" EngAngle="360" IsIndeterminate="True" Margin="231,102,232,162" MouseLeftButtonDown="ProgressRing_MouseLeftButtonDown"/>
+        <Label x:Name="FunWithMe" Panel.ZIndex="5" Content="Looks like So empty. We're still waiting..." Grid.Column="1" Margin="20,167,26,113" Grid.Row="2" FontFamily="Segoe UI Variable Display Semibold" HorizontalContentAlignment="Center" FontSize="13"/>
         <ListView x:Name="MultiFileList" Grid.Column="1" Grid.Row="2" FontSize="15" FontFamily="Segoe UI Variable Display SemiBold" Margin="20,20,20,20">
         </ListView>
         <GridSplitter Background="Transparent" Grid.Column="1" HorizontalAlignment="Left" Height="524" Margin="0,-5,0,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="11"/>
         <Label HorizontalAlignment="Center" Content="I'm so hungry, could you give some feedback?" VerticalAlignment="Center" Height="24" Width="503" FontFamily="Segoe UI Variable Display Semibold" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <wpfui:Button Content="GitHub >>" FontFamily="Segoe UI Variable Display Semibold" FontSize="13" Padding="0" Appearance="Secondary" Margin="65,0,318,0" Grid.Column="1" Height="24"/>
+        <wpfui:Button Content="GitHub >>" FontFamily="Segoe UI Variable Display Semibold" FontSize="13" Padding="0" Appearance="Secondary" Margin="263,2,120,0" Grid.Column="1" Height="24" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_5"/>
     </Grid>
 
 </mica:MicaWindow>
