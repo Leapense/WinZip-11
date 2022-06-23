@@ -23,17 +23,16 @@
         </Grid.RowDefinitions>
         <Image Source="/285690_zip_file_icon.ico" Margin="15,6,0,6" HorizontalAlignment="Left" Width="24"/>
         <Label VerticalContentAlignment="Center" Content="     Extract Compressed(Zipped) Folders" x:Name="TB1" FontSize="16" FontFamily="Segoe UI Variable Semibold" Margin="60,0,0,0"/>
-        <wpfui:TitleBar FontSize="24" FontFamily="Segoe UI Variable" FontWeight="DemiBold" Height="36" Panel.ZIndex="8" Focusable="True" CanMaximize="False" ShowMaximize="False" Margin="411,0,0,0" Grid.Column="1" Grid.Row="1"/>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Height="67" >
-                <ComboBox Margin="10,0,0,0" BorderThickness="0" x:Name="ThemeChanger" Width="121" Height="36" FontSize="11" Padding="0"  SelectionChanged="ThemeChanger_SelectionChanged">
+                <ComboBox Margin="10,0,0,0" BorderThickness="0" x:Name="ThemeChanger" Width="117" Height="58"  FontSize="11" Padding="5"  SelectionChanged="ThemeChanger_SelectionChanged">
                     <ComboBoxItem Content="Themes" IsSelected="True"/>
                     <ComboBoxItem Content="Acrylic" />
                     <ComboBoxItem Content="Mica" />
                     <ComboBoxItem Content="Tabbed" />
                     <ComboBoxItem Content="Solid" />
                 </ComboBox>
-                <ComboBox Margin="10,0,0,0" x:Name="Language" BorderThickness="0" Width="120" Text="Language" Height="36" FontSize="11" Padding="0" SelectionChanged="Language_SelectionChanged">
+                <ComboBox Margin="10,0,0,0" x:Name="Language" BorderThickness="0" Width="117" Text="Language" Height="58"  FontSize="11" Padding="5" SelectionChanged="Language_SelectionChanged">
                     <ComboBoxItem Content="Language Setting" IsSelected="True"/>
                     <ComboBoxItem Content="EN-US" />
                     <ComboBoxItem Content="KO-KR" />
@@ -135,7 +134,16 @@
             </Label>
             <Label x:Name="Body2" Content="Files will be extracted to this folder:" VerticalContentAlignment="Center" Padding="19,0,0,0"  FontSize="14" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="10,134,0,152" HorizontalAlignment="Left" Width="324"/>
             <wpfui:Button x:Name="Button2" Content="Browse..." Margin="354,139,0,0" Padding="0" FontSize="13" Appearance="Secondary" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" Click="Button_Click_1"/>
-            <CheckBox x:Name="TS1" Margin="20,291,529,10"  Height="23"  Content="Show extracted files when complete" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Cursor="Hand"/>
+            <CheckBox x:Name="TS1"
+                      Margin="20,291,529,10"  
+                      Height="23"  
+                      Content="Show extracted files when complete" 
+                      FontFamily="Segoe UI Variable Display" 
+                      FontWeight="Medium" 
+                      Cursor="Hand"
+                      
+                      />
+
             <CheckBox x:Name="TS2" Margin="20,268,567,33"  Height="23"  Content="After complete extract delete the files" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Cursor="Hand"/>
             <Label x:Name="Body1" Content="Select compressed file:" VerticalContentAlignment="Center" Padding="19,0,0,0" FontSize="14" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="10,67,0,222" HorizontalAlignment="Left" Width="330"/>
             <wpfui:Button x:Name="Button1" Appearance="Secondary" Content="Browse..." Margin="352,67,0,0" Padding="0" FontSize="13" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="92" Click="Button_Click"/>
@@ -151,19 +159,18 @@
             <wpfui:Button Icon="ArrowCircleRight48" Content="Start!"  Padding="0" FontSize="24" Appearance="Secondary" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Height="40" Click="Button_Click_4" HorizontalAlignment="Left" Width="139" Margin="851,17,0,0" VerticalAlignment="Top"/>
             <Label x:Name="NoEaster" Content="P.S. There is no easter-egg" Height="20"  FontSize="12" FontFamily="Segoe UI Variable Display" FontWeight="Medium" Margin="25,10,636,50"/>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Ver. 1.1.1" VerticalAlignment="Top" Height="16" Width="83"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="83"><Run Text="Ver. 1."/><Run Language="ko-kr" Text="2.0"/></TextBlock>
         <Grid Grid.Column="1" Grid.RowSpan="4" Background="#33333333" Panel.ZIndex="-4">
             <Label x:Name="FL" Content="Please Select The Zip File." HorizontalAlignment="Left" Margin="15,40,0,0" FontSize="14" VerticalAlignment="Top" FontFamily="Segoe UI Variable Display Semibold"/>
-            <TextBox HorizontalAlignment="Left" Margin="15,447,0,0" TextWrapping="Wrap" Text="We're Listening to you." VerticalAlignment="Top" Width="265" FontFamily="Segoe UI Variable Display Semibold"/>
-            <wpfui:Button Icon="PersonVoice24" Appearance="Secondary" Height="32" FontSize="24" Padding="0" Margin="299,447,175,0" VerticalAlignment="Top"/>
+            <wpfui:TextBox x:Name="Speeching" HorizontalAlignment="Right" Margin="0,443,170,0" TextWrapping="Wrap" PlaceholderText="Talk or Text with me!" VerticalAlignment="Top" Width="341" FontFamily="Segoe UI Variable Display Semibold" GotFocus="Speeching_GotFocus" KeyDown="Speeching_KeyDown" Height="41" FontSize="16" OverridesDefaultStyle="True"/>
         </Grid>
         <wpfui:ProgressRing x:Name="RingChan" Grid.Column="1" Progress="360" Foreground="WhiteSmoke" Grid.Row="2" Panel.ZIndex="5" EngAngle="360" IsIndeterminate="True" Margin="231,102,232,162" MouseLeftButtonDown="ProgressRing_MouseLeftButtonDown"/>
-        <Label x:Name="FunWithMe" Panel.ZIndex="5" Content="Looks like So empty. We're still waiting..." Grid.Column="1" Margin="20,167,26,113" Grid.Row="2" FontFamily="Segoe UI Variable Display Semibold" HorizontalContentAlignment="Center" FontSize="13"/>
+        <Label x:Name="FunWithMe" Panel.ZIndex="5" Content="Looks like So empty. We're still waiting..." Grid.Column="1" Margin="20,167,26,59" Grid.Row="2" FontFamily="Segoe UI Variable Display Semibold" HorizontalContentAlignment="Center" FontSize="11"/>
         <ListView x:Name="MultiFileList" Grid.Column="1" Grid.Row="2" FontSize="15" FontFamily="Segoe UI Variable Display SemiBold" Margin="20,20,20,20">
         </ListView>
         <GridSplitter Background="Transparent" Grid.Column="1" HorizontalAlignment="Left" Height="524" Margin="0,-5,0,0" Grid.RowSpan="4" VerticalAlignment="Top" Width="11"/>
-        <Label HorizontalAlignment="Center" Content="I'm so hungry, could you give some feedback?" VerticalAlignment="Center" Height="24" Width="503" FontFamily="Segoe UI Variable Display Semibold" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <wpfui:Button Content="GitHub >>" FontFamily="Segoe UI Variable Display Semibold" FontSize="13" Padding="0" Appearance="Secondary" Margin="263,2,120,0" Grid.Column="1" Height="24" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_5"/>
+        <Label HorizontalAlignment="Left" Content="I'm so hungry, could you give some feedback?" VerticalAlignment="Center" Height="24" Width="313" FontFamily="Segoe UI Variable Display Semibold" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <wpfui:Button Content="GitHub >>" FontFamily="Segoe UI Variable Display Semibold" FontSize="13" Padding="0" Appearance="Secondary" Margin="396,2,0,0" Grid.Column="1" Height="24" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_5" Width="117"/>
     </Grid>
 
 </mica:MicaWindow>
